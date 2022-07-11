@@ -50,6 +50,7 @@
     font-weight: 700;
     text-transform: uppercase;
     transition: 0.5s;
+    opacity: 0.3;
 }
 .reset-btn button:hover{
     background-color: var(--light-grayish-cyan);
@@ -80,9 +81,11 @@
     text-align: right;
     padding: 0 0.5rem;
     font-size: 24px;
-   
 }
-.bill-container span{
+.bill-container input:focus{
+    border: 1px solid var(--strong-cyan);
+}
+.bill-container div{
     position: absolute;
     bottom:0;
     left: 10px;
@@ -105,6 +108,11 @@
     border-radius: 5px;
     color: var(--white);
     cursor: pointer;
+    transition: 0.5s;
+}
+.tip-container .tip-btns div:hover{
+    background-color: var(--strong-cyan);
+    color: var(--white);
 }
 .tip-container .tip-btns div:last-child{
     background-color: transparent;
@@ -118,6 +126,19 @@
     text-align: center;
     border-radius: 5px;
     font-weight: 700;
+}
+.tip-container .tip-btns div input:focus{
+    border: 1px solid var(--strong-cyan);
+}
+.people-container{
+    position: relative;
+}
+.people-container div{
+    position: absolute;
+    bottom:0;
+    left: 10px;
+    color: var(--dark-grayish-cyan);
+    font-size: 24px;
 }
 .people-container label{
     display: block;
@@ -135,4 +156,34 @@
     text-align: right;
     padding: 0 0.5rem;
     font-size: 24px;
+}
+.people-container input:focus{
+    border: 1px solid rgb(224, 96, 96);
+}
+
+@media (max-width:860px) {
+    .layout{
+        max-width: 650px;
+    }
+}
+
+@media (max-width:675px) {
+    .layout{
+        max-width: 550px;
+    }
+    .total-container{
+        margin: 2rem 1rem;
+    }
+    .right-container{
+      margin: 2rem 1rem;
+   }
+}
+@media (max-width:590px) {
+    .layout{
+       grid-template-columns: 1fr;
+       height: max-content;
+    }
+    .total-container{
+      height: 300px;
+}
 }
