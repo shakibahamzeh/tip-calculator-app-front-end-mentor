@@ -38,6 +38,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .reset-btn button{
     border: none;
     outline: none;
@@ -51,6 +52,9 @@
     text-transform: uppercase;
     transition: 0.5s;
     opacity: 0.3;
+}
+ .active button{
+    opacity: 1;
 }
 .reset-btn button:hover{
     background-color: var(--light-grayish-cyan);
@@ -110,6 +114,10 @@
     cursor: pointer;
     transition: 0.5s;
 }
+.tip-container .tip-btns.touched-btn div{
+    background-color: var(--strong-cyan);
+    color: var(--white);
+}
 .tip-container .tip-btns div:hover{
     background-color: var(--strong-cyan);
     color: var(--white);
@@ -132,13 +140,19 @@
 }
 .people-container{
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
-.people-container div{
+.people-container .img-wrapper{
     position: absolute;
     bottom:0;
     left: 10px;
     color: var(--dark-grayish-cyan);
     font-size: 24px;
+}
+.warning-container {
+    display: flex;
+    justify-content: space-between;
 }
 .people-container label{
     display: block;
@@ -157,9 +171,22 @@
     padding: 0 0.5rem;
     font-size: 24px;
 }
-.people-container input:focus{
+.people-container span{
+    display: none;
+    align-self: flex-end;
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 14px;
+}
+.people-container.touched-input span{
+    display: block;
+    color:  rgb(224, 96, 96);
+}
+.people-container.touched-input input{
     border: 1px solid rgb(224, 96, 96);
 }
+/*.people-container input:focus{
+    border: 1px solid rgb(224, 96, 96);
+}*/
 
 @media (max-width:860px) {
     .layout{
