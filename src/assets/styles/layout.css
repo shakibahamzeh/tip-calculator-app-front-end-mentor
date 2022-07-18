@@ -86,6 +86,15 @@
     padding: 0 0.5rem;
     font-size: 24px;
 }
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+}
 .bill-container input:focus{
     border: 1px solid var(--strong-cyan);
 }
@@ -106,7 +115,7 @@
     grid-template-columns: repeat(3,1fr);
     gap: 10px;
 }
-.tip-container .tip-btns div{
+.tip-container .tip-btns .btns{
     background-color: var(--very-dark-cyan);
     text-align: center;
     border-radius: 5px;
@@ -114,11 +123,11 @@
     cursor: pointer;
     transition: 0.5s;
 }
-.tip-container .tip-btns.touched-btn div{
+.tip-container .tip-btns .btns.active{
     background-color: var(--strong-cyan);
     color: var(--white);
 }
-.tip-container .tip-btns div:hover{
+.tip-container .tip-btns .btns:hover{
     background-color: var(--strong-cyan);
     color: var(--white);
 }

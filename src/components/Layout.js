@@ -4,12 +4,13 @@ import dollar from "../assets/images/icon-dollar.svg";
 import person from "../assets/images/icon-person.svg";
 
 const Layout = () => {
+  const tips = [5,10,15,25,50];
   const [bill,setBill] = useState(0);
   const [tip , setTip] = useState(0);
   const [people,setPerson] = useState(0);
   const [touched , setTouched] = useState(false);
-  const [custom,setCustom] = useState('')
-
+  const [custom,setCustom] = useState(0);
+  const [selected, setSelected] = useState(false);
 
   const clickHandler = (e) => {
     setTip(parseInt(e.target.textContent)/100);
@@ -17,11 +18,8 @@ const Layout = () => {
   }
 
   const changeHandler = (e) => {
-    if( e.target.value === ""){
-     setBill(0)
-    } else if(!isNaN(e.target.value)){
-       setBill(parseFloat(e.target.value))
-   }}
+   setBill(e.target.value)
+   }
    const personHandler = (e) => {
     if( e.target.value === ""){
      setPerson(0)
@@ -30,20 +28,22 @@ const Layout = () => {
    }};
 
    const customHandler = (e) => {
-     if(e.target.value === ""){
-       setCustom('');
-     }else if(e.target.value !== Number){
-      const tip = setCustom(parseInt(e.target.value));
-       console.log(tip)
+     if(e.target.value === 0){
+       setCustom(0)
+       setTip(0);
+     }else {
+       setCustom(e.target.value);
+       setTip((e.target.value)/100);
      }
    }
-
+  
  
   const resetHandler = () => {
     setBill(0);
     setTip(0);
     setPerson(0);
-    setTouched(false)
+    setTouched(false);
+    setSelected(false);
   };
  
   return (
@@ -51,31 +51,19 @@ const Layout = () => {
       <section className='right-container'>
           <div className='bill-container'>
               <label htmlFor='bill'>Bill</label>
-              <input type="text" id='bill' placeholder='0' value={bill} onChange={changeHandler}/>
+              <input type="number" id='bill' placeholder='0' value={bill} onChange={changeHandler}/>
               <div>
                 <img src={dollar} alt="dollar"/>
               </div>
           </div>
           <div className='tip-container'>
               <h4>Select Tip %</h4>
-             <section className={`tip-btns ${touched ? "touched-btn" : ""}`} onClick={clickHandler} value={people}>
+             <section className='tip-btns' onClick={clickHandler}  value={tip}>
+                  {
+                    tips.map((tip,index) => <div key={index} className={`btns ${selected ? "active" : ""}`}>{tip}%</div>)
+                  }
                   <div>
-                   5%
-                  </div>
-                  <div>
-                    10%
-                  </div>
-                  <div>
-                    15%
-                  </div>
-                  <div>
-                    25%
-                  </div>
-                  <div>
-                    50%
-                  </div>
-                  <div>
-                    <input type="text" placeholder='Custum'  value={custom} onChange={customHandler}/>
+                    <input type="number" placeholder='Custum'  value={custom} onChange={customHandler}/>
                   </div>
              </section>
           </div>
@@ -112,7 +100,7 @@ const Layout = () => {
               <div>
                   <h1>$ 
                     {
-                      (bill !== 0 && people !== 0) ? ((bill * tip)/people + (bill/people)) : 0
+                      (bill !== 0 && people !== 0) ? ((bill * tip)/people + (bill/people)).toFixed(4) : 0
                     }
                   </h1>
               </div>
